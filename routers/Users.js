@@ -56,5 +56,49 @@ router.post("/", (req, res) => {
 })
 
 
+router.put("/:id", (req, res) => {
+    try{
+
+        const user = users[req.params.id - 1]
+
+        if(!user) res.status(200).send("No such user")
+
+        const {name, age} = req.body
+
+        if(name){
+            user.name = name
+        }
+
+        if(age){
+            user.age = age
+        }
+
+        res.status(200).json(user)
+
+    } catch(error) {
+        console.error(error)
+    }
+})
+
+
+router.delete("/:id", (req, res) => {
+    try{
+        const user = users[req.params.id - 1]
+
+        if(!user) res.status(200).send("No such user")
+
+        const newUserArr = users.filter(element => element.name !== user.name)
+        users = newUserArr
+
+        res.status(200).json(users)
+
+
+    } catch(error) {
+        console.error(error)
+        res.status(404).send("COuld not find user")
+    }
+})
+
+
 
 module.exports = router
