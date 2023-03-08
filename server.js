@@ -3,7 +3,8 @@ const app = express()
 const port = 3000
 const usersRouter = require("./routers/Users")
 const fruitsRouter = require("./routers/Fruits")
-
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
 
 // Express Routes

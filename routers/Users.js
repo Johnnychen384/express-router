@@ -36,12 +36,24 @@ router.get("/:id", (req, res) => {
         const target = users[req.params.id - 1]
         res.json(target)
 
-        
+
     } catch(error) {
         console.error(error)
     }
 })
 
+
+router.post("/", (req, res) => {
+    try{
+        const newUser = req.body
+        users.push(newUser)
+
+        res.json(newUser)
+
+    } catch(error) {
+        console.error(error)
+    }
+})
 
 
 
